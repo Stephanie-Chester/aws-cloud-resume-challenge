@@ -2,7 +2,7 @@
 const counterElement = document.getElementById('visitCount');
 
 // Send a POST request to the API endpoint
-fetch('https://ikvf0kps26.execute-api.us-east-1.amazonaws.com/default/IncrementVisitorCounter', {
+fetch('https://7hn5blxzxg.execute-api.us-east-1.amazonaws.com/default/IncrementVisitorCounter', {
   method: 'POST',
   mode: 'cors'
 })

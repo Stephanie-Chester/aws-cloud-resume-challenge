@@ -20,12 +20,9 @@ def lambda_handler(event, context):
         },
     )
     
-    headers = {
+    return {
+        'body': visitorCount,
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Content-Type': 'application/json'
-    }
-    
-    return {
-    'body': visitorCount
 }
