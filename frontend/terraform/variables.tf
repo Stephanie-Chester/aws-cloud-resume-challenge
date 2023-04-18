@@ -6,6 +6,11 @@ variable "s3_bucket_names" {
 
 # Setting variable for subdomain hostname
 variable "hostname" {
-  type = string
+  type    = string
   default = "www.stephaniechester.live"
+}
+
+variable "domain_name_root" {
+  type    = string
+  default = "stephaniechester.live"
 }
