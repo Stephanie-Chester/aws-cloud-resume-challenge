@@ -16,7 +16,7 @@ terraform {
 # Cloudfront distribution for main s3 site.
 resource "aws_cloudfront_distribution" "www_s3_distribution" {
   origin {
-    domain_name = "www.stephaniechester.com.s3-website-us-east-1.amazonaws.com"
+    domain_name = "${aws_s3_bucket.www.website_endpoint}"
     origin_id   = "${var.subdomain}"
 
     custom_origin_config {
@@ -76,7 +76,7 @@ resource "aws_cloudfront_distribution" "www_s3_distribution" {
 # Cloudfront S3 for redirect to www.
 resource "aws_cloudfront_distribution" "root_s3_distribution" {
   origin {
-    domain_name = "${var.domain_name_root}"
+    domain_name = "${aws_s3_bucket.www.website_endpoint}"
     origin_id   = "${var.domain_name_root}"
     custom_origin_config {
       http_port              = 80
