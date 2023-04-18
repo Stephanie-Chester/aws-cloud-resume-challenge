@@ -9,7 +9,7 @@ resource "aws_s3_bucket_website_configuration" "s3_root_website" {
   bucket = var.s3_bucket_names[0]
 
   redirect_all_requests_to {
-    host_name = var.hostname
+    host_name = var.subdomain
     protocol  = "https"
   }
 }
