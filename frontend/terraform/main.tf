@@ -16,8 +16,8 @@ terraform {
 # Cloudfront distribution for main s3 site.
 resource "aws_cloudfront_distribution" "www_s3_distribution" {
   origin {
-    domain_name = "${aws_s3_bucket.www.website_endpoint}"
-    origin_id   = "${var.subdomain}"
+    domain_name = "${aws_s3_bucket.two-buckets[1].bucket_regional_domain_name}"
+    origin_id   = "S3-${aws_s3_bucket.two-buckets}"
 
     custom_origin_config {
       http_port              = 80
@@ -43,7 +43,7 @@ resource "aws_cloudfront_distribution" "www_s3_distribution" {
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = var.s3_bucket_names[1]
+    target_origin_id = "${aws_s3_bucket.two-buckets.*.website_endpoint[count.index]}"
 
     forwarded_values {
       query_string = false
@@ -76,8 +76,9 @@ resource "aws_cloudfront_distribution" "www_s3_distribution" {
 # Cloudfront S3 for redirect to www.
 resource "aws_cloudfront_distribution" "root_s3_distribution" {
   origin {
-    domain_name = "${aws_s3_bucket.www.website_endpoint}"
-    origin_id   = "${var.domain_name_root}"
+    domain_name = "${aws_s3_bucket.two-buckets[2].bucket_regional_domain_name}"
+    origin_id   = "${aws_s3_bucket.two-buckets.*.website_endpoint[count.index]}"
+
     custom_origin_config {
       http_port              = 80
       https_port             = 443
@@ -94,7 +95,7 @@ resource "aws_cloudfront_distribution" "root_s3_distribution" {
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = var.s3_bucket_names[0]
+    target_origin_id = "S3-${aws_s3_bucket.two-buckets.bucket}"
 
     forwarded_values {
       query_string = true
