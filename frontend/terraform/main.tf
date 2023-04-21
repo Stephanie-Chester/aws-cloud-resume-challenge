@@ -77,7 +77,7 @@ resource "aws_cloudfront_distribution" "www_s3_distribution" {
 resource "aws_cloudfront_distribution" "root_s3_distribution" {
   origin {
     domain_name = "${aws_s3_bucket.two-buckets[0].bucket_regional_domain_name}"
-    origin_id   = "S3-.${var.domain_name_root}"
+    origin_id   = "${var.domain_name_root}"
 
     custom_origin_config {
       http_port              = 80
@@ -90,7 +90,7 @@ resource "aws_cloudfront_distribution" "root_s3_distribution" {
   enabled         = true
   is_ipv6_enabled = true
 
-  aliases = ["var.domain_name_root"]
+  aliases = [var.domain_name_root]
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
