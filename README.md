@@ -29,6 +29,12 @@ This repo is my attempt at the Cloud Resume Challenge created by Forrest Brazeal
  ● Leveraged Python Boto3 and Lambda to automate & serve changes to/from DynamoDB using API Gateway<br>
  ● Created a GitHub repository for my back-end and front-end code.<br>
  
+ ### Coming soon:
+ Python tests for Lambda code
+ Cypress test for website
+ Blog
+ Diagram of infrastructure
+ 
  Cloud Resume Challenge Official Website
  
  https://cloudresumechallenge.dev/instructions
