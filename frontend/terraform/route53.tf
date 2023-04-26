@@ -3,7 +3,7 @@ resource "aws_acm_certificate" "mycert" {
   validation_method = "DNS"
 
   subject_alternative_names = [
-    "*.stephaniechester.live",
+    "*.stephaniechester.com",
   ]
 
   lifecycle {
@@ -26,12 +26,12 @@ resource "aws_acm_certificate_validation" "my_cert_validate" {
 }
 
 resource "aws_route53_zone" "ns_record" {
-  name = "stephaniechester.live"
+  name = "stephaniechester.com"
 }
 
 resource "aws_route53_record" "ns_record" {
   allow_overwrite = true
-  name            = "stephaniechester.live"
+  name            = "stephaniechester.com"
   ttl             = 172800
   type            = "NS"
   zone_id         = aws_route53_zone.ns_record.zone_id
