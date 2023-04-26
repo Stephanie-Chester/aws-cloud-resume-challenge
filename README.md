@@ -1,6 +1,6 @@
 # aws-cloud-resume-challenge
 
- # AWS Cloud Resume Project
+ ## AWS Cloud Resume Project
  
 <p>●	Technologies Utilized: 
  AWS S3, Route53
